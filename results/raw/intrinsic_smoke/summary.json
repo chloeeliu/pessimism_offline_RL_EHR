@@ -1,0 +1,62 @@
+{
+  "greedy": {
+    "10": {
+      "mean_value": 0.7549999999999999,
+      "std_value": 0.07889866919029746,
+      "mean_low_support_mass": 0.4666666666666667,
+      "mean_root_action_count": 8.033333333333333,
+      "mean_chosen_action_q_error": 0.23776014109347446,
+      "mean_action_agreement_mass": 0.6333333333333333,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "20": {
+      "mean_value": 0.7483333333333333,
+      "std_value": 0.07903937134252914,
+      "mean_low_support_mass": 0.23333333333333334,
+      "mean_root_action_count": 14.4,
+      "mean_chosen_action_q_error": 0.20111060918594462,
+      "mean_action_agreement_mass": 0.6333333333333333,
+      "mean_chosen_action_bonus": 0.0
+    }
+  },
+  "pessimistic": {
+    "10": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 9.366666666666667,
+      "mean_chosen_action_q_error": -0.27523590096942496,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.5438913829283949
+    },
+    "20": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 18.533333333333335,
+      "mean_chosen_action_q_error": -0.2409373071242737,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.38511551036721176
+    }
+  },
+  "support_masked": {
+    "10": {
+      "mean_value": 0.7849999999999999,
+      "std_value": 0.05024937810560443,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 9.1,
+      "mean_chosen_action_q_error": 0.07953703703703707,
+      "mean_action_agreement_mass": 0.6555555555555556,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "20": {
+      "mean_value": 0.75,
+      "std_value": 0.08660254037844382,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 16.2,
+      "mean_chosen_action_q_error": 0.16393648515036546,
+      "mean_action_agreement_mass": 0.6222222222222222,
+      "mean_chosen_action_bonus": 0.0
+    }
+  }
+}

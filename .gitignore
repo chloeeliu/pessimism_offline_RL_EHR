@@ -2,5 +2,4 @@ __pycache__/
 *.pyc
 .DS_Store
 .mplconfig/
-results/raw/
-results/figures/
+

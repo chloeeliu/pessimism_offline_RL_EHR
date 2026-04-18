@@ -1,0 +1,54 @@
+{
+  "greedy": {
+    "10": {
+      "mean_value": 0.607,
+      "std_value": 0.1715692280101534,
+      "mean_low_support_mass": 0.625,
+      "mean_root_action_count": 2.325
+    },
+    "20": {
+      "mean_value": 0.57975,
+      "std_value": 0.15996073737014344,
+      "mean_low_support_mass": 0.55,
+      "mean_root_action_count": 3.275
+    },
+    "50": {
+      "mean_value": 0.6012500000000001,
+      "std_value": 0.16374045773723733,
+      "mean_low_support_mass": 0.35,
+      "mean_root_action_count": 8.025
+    },
+    "100": {
+      "mean_value": 0.70575,
+      "std_value": 0.10746830928231821,
+      "mean_low_support_mass": 0.1,
+      "mean_root_action_count": 24.475
+    }
+  },
+  "pessimistic": {
+    "10": {
+      "mean_value": 0.70175,
+      "std_value": 0.13823688907089887,
+      "mean_low_support_mass": 0.3,
+      "mean_root_action_count": 3.375
+    },
+    "20": {
+      "mean_value": 0.6940000000000001,
+      "std_value": 0.14999666662962882,
+      "mean_low_support_mass": 0.075,
+      "mean_root_action_count": 6.375
+    },
+    "50": {
+      "mean_value": 0.7495,
+      "std_value": 0.09568045777482465,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 16.65
+    },
+    "100": {
+      "mean_value": 0.776,
+      "std_value": 0.024979991993593596,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 36.35
+    }
+  }
+}

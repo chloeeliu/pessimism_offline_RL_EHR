@@ -1,0 +1,170 @@
+{
+  "greedy": {
+    "10": {
+      "mean_value": 0.7384999999999999,
+      "std_value": 0.10836397002694204,
+      "mean_low_support_mass": 0.45,
+      "mean_root_action_count": 8.305,
+      "mean_chosen_action_q_error": 0.20097156084656087,
+      "mean_action_agreement_mass": 0.61,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "20": {
+      "mean_value": 0.7182499999999999,
+      "std_value": 0.11036048885357473,
+      "mean_low_support_mass": 0.335,
+      "mean_root_action_count": 14.625,
+      "mean_chosen_action_q_error": 0.21060000058277925,
+      "mean_action_agreement_mass": 0.5983333333333333,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "50": {
+      "mean_value": 0.735,
+      "std_value": 0.09380831519646857,
+      "mean_low_support_mass": 0.06,
+      "mean_root_action_count": 32.465,
+      "mean_chosen_action_q_error": 0.13647813625871216,
+      "mean_action_agreement_mass": 0.63,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "100": {
+      "mean_value": 0.75525,
+      "std_value": 0.07720063147410128,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 67.055,
+      "mean_chosen_action_q_error": 0.08980822470990603,
+      "mean_action_agreement_mass": 0.6516666666666666,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "200": {
+      "mean_value": 0.7729999999999999,
+      "std_value": 0.048435524153249324,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 144.81,
+      "mean_chosen_action_q_error": 0.049976548429228336,
+      "mean_action_agreement_mass": 0.6633333333333333,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "500": {
+      "mean_value": 0.7815,
+      "std_value": 0.03882975663070784,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 388.27,
+      "mean_chosen_action_q_error": 0.026556925872722785,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.0
+    }
+  },
+  "pessimistic": {
+    "10": {
+      "mean_value": 0.7865,
+      "std_value": 0.07676424949154391,
+      "mean_low_support_mass": 0.03,
+      "mean_root_action_count": 9.325,
+      "mean_chosen_action_q_error": -0.2798562345478339,
+      "mean_action_agreement_mass": 0.6566666666666666,
+      "mean_chosen_action_bonus": 0.5479286179568273
+    },
+    "20": {
+      "mean_value": 0.7909999999999999,
+      "std_value": 0.063,
+      "mean_low_support_mass": 0.02,
+      "mean_root_action_count": 18.715,
+      "mean_chosen_action_q_error": -0.24341580728778797,
+      "mean_action_agreement_mass": 0.6599999999999999,
+      "mean_chosen_action_bonus": 0.3866659916020398
+    },
+    "50": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 46.995,
+      "mean_chosen_action_q_error": -0.1697452054403203,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.24109761547111677
+    },
+    "100": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 93.965,
+      "mean_chosen_action_q_error": -0.11255197786974858,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.1703226762105773
+    },
+    "200": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 188.16,
+      "mean_chosen_action_q_error": -0.07999765855003658,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.1203509535773588
+    },
+    "500": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 470.01,
+      "mean_chosen_action_q_error": -0.0499117402085126,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.07617040162163169
+    }
+  },
+  "support_masked": {
+    "10": {
+      "mean_value": 0.7797499999999999,
+      "std_value": 0.060641879093576885,
+      "mean_low_support_mass": 0.015,
+      "mean_root_action_count": 8.955,
+      "mean_chosen_action_q_error": 0.07151256613756617,
+      "mean_action_agreement_mass": 0.6483333333333333,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "20": {
+      "mean_value": 0.74725,
+      "std_value": 0.09356782299487358,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 16.185,
+      "mean_chosen_action_q_error": 0.12446008923137408,
+      "mean_action_agreement_mass": 0.6216666666666666,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "50": {
+      "mean_value": 0.7397499999999999,
+      "std_value": 0.09018002827677532,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 33.665,
+      "mean_chosen_action_q_error": 0.11688546454666396,
+      "mean_action_agreement_mass": 0.6316666666666666,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "100": {
+      "mean_value": 0.75525,
+      "std_value": 0.07720063147410128,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 67.055,
+      "mean_chosen_action_q_error": 0.08980822470990603,
+      "mean_action_agreement_mass": 0.6516666666666666,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "200": {
+      "mean_value": 0.7729999999999999,
+      "std_value": 0.048435524153249324,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 144.81,
+      "mean_chosen_action_q_error": 0.049976548429228336,
+      "mean_action_agreement_mass": 0.6633333333333333,
+      "mean_chosen_action_bonus": 0.0
+    },
+    "500": {
+      "mean_value": 0.7815,
+      "std_value": 0.03882975663070784,
+      "mean_low_support_mass": 0.0,
+      "mean_root_action_count": 388.27,
+      "mean_chosen_action_q_error": 0.026556925872722785,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.0
+    }
+  }
+}

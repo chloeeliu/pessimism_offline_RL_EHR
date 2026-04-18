@@ -1,0 +1,20 @@
+{
+  "task": "intrinsic",
+  "dataset_sizes": [
+    10,
+    20
+  ],
+  "seeds": 30,
+  "support_mask_threshold": 2,
+  "betas": [
+    0.0,
+    0.8,
+    1.2
+  ],
+  "output_dir": "results/raw/intrinsic_beta_smoke",
+  "task_params": {
+    "root_risky_prob": 0.06,
+    "hidden_optimal_behavior_prob": 0.0,
+    "support_threshold": 2
+  }
+}

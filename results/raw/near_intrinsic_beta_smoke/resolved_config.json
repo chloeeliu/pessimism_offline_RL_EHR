@@ -1,0 +1,23 @@
+{
+  "task": "near_intrinsic",
+  "dataset_sizes": [
+    20,
+    50,
+    100,
+    200
+  ],
+  "seeds": 40,
+  "support_mask_threshold": 2,
+  "betas": [
+    0.0,
+    0.4,
+    0.8,
+    1.2
+  ],
+  "output_dir": "results/raw/near_intrinsic_beta_smoke",
+  "task_params": {
+    "root_risky_prob": 0.1,
+    "hidden_optimal_behavior_prob": 0.1,
+    "support_threshold": 2
+  }
+}

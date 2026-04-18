@@ -1,0 +1,20 @@
+{
+  "task": "branching",
+  "dataset_sizes": [
+    10,
+    20
+  ],
+  "seeds": 20,
+  "support_mask_threshold": 2,
+  "betas": [
+    0.0,
+    0.4,
+    0.8
+  ],
+  "output_dir": "results/raw/branching_beta_smoke",
+  "task_params": {
+    "root_risky_prob": 0.08,
+    "risky_success_reward": 0.45,
+    "support_threshold": 2
+  }
+}
