@@ -1,0 +1,89 @@
+{
+  "greedy": {
+    "10": {
+      "mean_value": 0.74125,
+      "std_value": 0.13550253687662084,
+      "mean_low_support_mass": 1.125,
+      "mean_chosen_action_q_error": 0.04298651461051017,
+      "mean_action_agreement_mass": 0.6583333333333333,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    },
+    "50": {
+      "mean_value": 0.7374999999999999,
+      "std_value": 0.07806247497997995,
+      "mean_low_support_mass": 0.075,
+      "mean_chosen_action_q_error": 0.09345951232654268,
+      "mean_action_agreement_mass": 0.6499999999999999,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    },
+    "200": {
+      "mean_value": 0.7625,
+      "std_value": 0.0484122918275927,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": 0.0545479885713378,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    }
+  },
+  "pessimistic": {
+    "10": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": -0.343584972307236,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.5129389869017738,
+      "mean_chosen_feature_novelty": 0.5129389869017738
+    },
+    "50": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": -0.20142870712086183,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.24081407065581079,
+      "mean_chosen_feature_novelty": 0.24081407065581079
+    },
+    "200": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": -0.09151197627200805,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.12209963331500719,
+      "mean_chosen_feature_novelty": 0.12209963331500719
+    }
+  },
+  "support_masked": {
+    "10": {
+      "mean_value": 0.7587499999999999,
+      "std_value": 0.09479418494823401,
+      "mean_low_support_mass": 0.05,
+      "mean_chosen_action_q_error": -0.029291639692651052,
+      "mean_action_agreement_mass": 0.6416666666666666,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    },
+    "50": {
+      "mean_value": 0.73,
+      "std_value": 0.07648529270389175,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": 0.09583510992134756,
+      "mean_action_agreement_mass": 0.6333333333333333,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    },
+    "200": {
+      "mean_value": 0.7625,
+      "std_value": 0.0484122918275927,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": 0.05453588001842364,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "greedy": {
+    "10": {
+      "mean_value": 0.7116666666666667,
+      "std_value": 0.1215753081655792,
+      "mean_low_support_mass": 1.0333333333333334,
+      "mean_chosen_action_q_error": 0.11178242135389646,
+      "mean_action_agreement_mass": 0.611111111111111,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    },
+    "20": {
+      "mean_value": 0.7183333333333333,
+      "std_value": 0.1012285642604014,
+      "mean_low_support_mass": 0.5333333333333333,
+      "mean_chosen_action_q_error": 0.09157393179223178,
+      "mean_action_agreement_mass": 0.611111111111111,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    }
+  },
+  "pessimistic": {
+    "10": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": -0.3258635579146045,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.5118677767218794,
+      "mean_chosen_feature_novelty": 0.5118677767218794
+    },
+    "20": {
+      "mean_value": 0.7999999999999999,
+      "std_value": 0.0,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": -0.2934816989398691,
+      "mean_action_agreement_mass": 0.6666666666666666,
+      "mean_chosen_action_bonus": 0.3723296377568782,
+      "mean_chosen_feature_novelty": 0.3723296377568782
+    }
+  },
+  "support_masked": {
+    "10": {
+      "mean_value": 0.755,
+      "std_value": 0.093407708461347,
+      "mean_low_support_mass": 0.0,
+      "mean_chosen_action_q_error": -0.0018854886072315247,
+      "mean_action_agreement_mass": 0.6333333333333333,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    },
+    "20": {
+      "mean_value": 0.735,
+      "std_value": 0.10499999999999995,
+      "mean_low_support_mass": 0.06666666666666667,
+      "mean_chosen_action_q_error": 0.04262850705584517,
+      "mean_action_agreement_mass": 0.611111111111111,
+      "mean_chosen_action_bonus": 0.0,
+      "mean_chosen_feature_novelty": 0.0
+    }
+  }
+}

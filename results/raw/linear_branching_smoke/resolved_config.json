@@ -1,0 +1,16 @@
+{
+  "task": "linear_branching",
+  "dataset_sizes": [
+    10,
+    20
+  ],
+  "seeds": 30,
+  "ridge": 1.0,
+  "beta": 0.8,
+  "support_mask_threshold": 2,
+  "output_dir": "results/raw/linear_branching_smoke",
+  "task_params": {
+    "feature_dim": 6,
+    "support_threshold": 2
+  }
+}
