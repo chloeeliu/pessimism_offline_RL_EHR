@@ -40,7 +40,7 @@ DEFAULTS = {
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--task", choices=["bandit", "branching"], default="branching")
+    parser.add_argument("--task", choices=["bandit", "branching", "intrinsic", "near_intrinsic"], default="branching")
     parser.add_argument("--dataset-sizes", default="20,50,100,200,500")
     parser.add_argument("--seeds", type=int, default=50)
     parser.add_argument("--support-mask-threshold", type=int, default=None)

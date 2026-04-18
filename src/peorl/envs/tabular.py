@@ -172,10 +172,120 @@ def make_branching_task(
     )
 
 
+def make_intrinsic_uncertainty_task(
+    root_risky_prob: float = 0.06,
+    hidden_optimal_behavior_prob: float = 0.0,
+    support_threshold: int = 2,
+) -> OfflineTask:
+    horizon = 3
+    num_states = 6
+    num_actions = 2
+
+    rewards = np.zeros((horizon, num_states, num_actions), dtype=float)
+    transitions = np.zeros((horizon, num_states, num_actions, num_states), dtype=float)
+
+    root, safe_mid, risky_mid, safe_leaf, hidden_leaf, bad_leaf = range(num_states)
+
+    rewards[0, root, 0] = 0.10
+    rewards[0, root, 1] = 0.00
+    transitions[0, root, 0, safe_mid] = 1.0
+    transitions[0, root, 1, risky_mid] = 1.0
+    transitions[0, safe_mid:, :, bad_leaf] = 1.0
+
+    rewards[1, safe_mid, 0] = 0.20
+    rewards[1, safe_mid, 1] = 0.05
+    transitions[1, safe_mid, 0, safe_leaf] = 1.0
+    transitions[1, safe_mid, 1, bad_leaf] = 1.0
+
+    rewards[1, risky_mid, 0] = 0.10
+    rewards[1, risky_mid, 1] = 0.30
+    transitions[1, risky_mid, 0, hidden_leaf] = 1.0
+    transitions[1, risky_mid, 1, bad_leaf] = 1.0
+
+    transitions[1, safe_leaf:, :, bad_leaf] = 1.0
+
+    rewards[2, safe_leaf, 0] = 0.50
+    rewards[2, safe_leaf, 1] = 0.05
+    rewards[2, hidden_leaf, 0] = 0.85
+    rewards[2, hidden_leaf, 1] = 0.05
+    rewards[2, bad_leaf, 0] = 0.40
+    rewards[2, bad_leaf, 1] = 0.00
+    transitions[2, :, :, bad_leaf] = 1.0
+
+    initial_state_dist = _one_hot(root, num_states)
+
+    behavior_policy = np.zeros((horizon, num_states, num_actions), dtype=float)
+    behavior_policy[:, :, 0] = 1.0
+    behavior_policy[0, root] = np.array([1.0 - root_risky_prob, root_risky_prob], dtype=float)
+    behavior_policy[1, safe_mid] = np.array([0.90, 0.10], dtype=float)
+    behavior_policy[1, risky_mid] = np.array(
+        [hidden_optimal_behavior_prob, 1.0 - hidden_optimal_behavior_prob],
+        dtype=float,
+    )
+    behavior_policy[2, safe_leaf] = np.array([0.95, 0.05], dtype=float)
+    behavior_policy[2, hidden_leaf] = np.array([1.0, 0.0], dtype=float)
+    behavior_policy[2, bad_leaf] = np.array([0.90, 0.10], dtype=float)
+
+    mdp = TabularMDP(
+        name="intrinsic_branching_mdp",
+        horizon=horizon,
+        num_states=num_states,
+        num_actions=num_actions,
+        rewards=rewards,
+        transition_probs=transitions,
+        initial_state_dist=initial_state_dist,
+    )
+    return OfflineTask(
+        mdp=mdp,
+        behavior_policy=behavior_policy,
+        support_threshold=support_threshold,
+        description=(
+            "Three-step branching MDP where the logged data never shows the optimal continuation "
+            "of a weakly visited branch. The safe branch is learnable, but the hidden optimal path "
+            "is off-support, so pessimism should fail gracefully rather than recover it."
+        ),
+    )
+
+
+def make_near_intrinsic_task(
+    root_risky_prob: float = 0.10,
+    hidden_optimal_behavior_prob: float = 0.10,
+    support_threshold: int = 2,
+) -> OfflineTask:
+    task = make_intrinsic_uncertainty_task(
+        root_risky_prob=root_risky_prob,
+        hidden_optimal_behavior_prob=hidden_optimal_behavior_prob,
+        support_threshold=support_threshold,
+    )
+    mdp = TabularMDP(
+        name="near_intrinsic_branching_mdp",
+        horizon=task.mdp.horizon,
+        num_states=task.mdp.num_states,
+        num_actions=task.mdp.num_actions,
+        rewards=task.mdp.rewards,
+        transition_probs=task.mdp.transition_probs,
+        initial_state_dist=task.mdp.initial_state_dist,
+    )
+    return OfflineTask(
+        mdp=mdp,
+        behavior_policy=task.behavior_policy,
+        support_threshold=task.support_threshold,
+        description=(
+            "Three-step branching MDP with a rarely observed optimal continuation. "
+            "The hidden branch is no longer fully off-support, so the learner may recover it "
+            "once enough rare evidence accumulates."
+        ),
+    )
+
+
 def make_task(name: str, **kwargs: float | int) -> OfflineTask:
     normalized = name.strip().lower()
     if normalized == "bandit":
         return make_bandit_task(**kwargs)
     if normalized == "branching":
         return make_branching_task(**kwargs)
-    raise ValueError(f"Unknown task {name!r}. Expected 'bandit' or 'branching'.")
+    if normalized == "intrinsic":
+        return make_intrinsic_uncertainty_task(**kwargs)
+    if normalized == "near_intrinsic":
+        return make_near_intrinsic_task(**kwargs)
+    raise ValueError(f"Unknown task {name!r}. Expected 'bandit', 'branching', 'intrinsic', or 'near_intrinsic'.")

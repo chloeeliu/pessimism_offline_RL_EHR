@@ -8,6 +8,8 @@ This repository now includes a first tabular-only reproduction scaffold for the 
 - two built-in tasks:
   - `bandit`: one-step bandit with a weakly covered distractor arm
   - `branching`: three-step branching MDP with an under-covered risky branch
+  - `intrinsic`: three-step branching MDP where the optimal continuation is off-support in the logged data
+  - `near_intrinsic`: three-step branching MDP where the optimal continuation is very rare but not fully absent
 - offline dataset generation from a fixed behavior policy
 - empirical model estimation from logged data
 - three planners:
@@ -30,6 +32,8 @@ Or use the saved study configs:
 ```bash
 python3 scripts/run_tabular_experiment.py --config configs/bandit_study.json
 python3 scripts/run_tabular_experiment.py --config configs/branching_study.json
+python3 scripts/run_tabular_experiment.py --config configs/intrinsic_study.json
+python3 scripts/run_tabular_experiment.py --config configs/near_intrinsic_study.json
 ```
 
 Run the beta sweeps with:
@@ -37,12 +41,16 @@ Run the beta sweeps with:
 ```bash
 python3 scripts/run_beta_sweep.py --config configs/bandit_beta_sweep.json
 python3 scripts/run_beta_sweep.py --config configs/branching_beta_sweep.json
+python3 scripts/run_beta_sweep.py --config configs/intrinsic_beta_sweep.json
+python3 scripts/run_beta_sweep.py --config configs/near_intrinsic_beta_sweep.json
 ```
 
 Useful options:
 
 - `--task bandit`
 - `--task branching`
+- `--task intrinsic`
+- `--task near_intrinsic`
 - `--dataset-sizes 10,20,50,100,200`
 - `--seeds 50`
 - `--beta 0.8`

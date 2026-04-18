@@ -28,8 +28,12 @@ Configs:
 
 - [configs/bandit_study.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/bandit_study.json)
 - [configs/branching_study.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/branching_study.json)
+- [configs/intrinsic_study.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/intrinsic_study.json)
+- [configs/near_intrinsic_study.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/near_intrinsic_study.json)
 - [configs/bandit_beta_sweep.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/bandit_beta_sweep.json)
 - [configs/branching_beta_sweep.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/branching_beta_sweep.json)
+- [configs/intrinsic_beta_sweep.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/intrinsic_beta_sweep.json)
+- [configs/near_intrinsic_beta_sweep.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/configs/near_intrinsic_beta_sweep.json)
 
 ## Tasks
 
@@ -54,6 +58,27 @@ Purpose:
 
 - test whether pessimism improves end-to-end offline planning, not just one-step action selection
 
+### 3. Intrinsic-Uncertainty Branching MDP
+
+- three-step episodic MDP
+- the safe branch is fully learnable and returns a strong but suboptimal value
+- a weakly visited risky branch contains the true optimum
+- the logged data never shows the optimal continuation of that risky branch
+
+Purpose:
+
+- test whether the methods fail gracefully when the best trajectory is off-support and therefore not recoverable from the offline dataset
+
+### 4. Near-Missing-Support Branching MDP
+
+- same hidden optimal branch structure as the intrinsic task
+- but the logged data now shows the hidden optimal continuation very rarely instead of never
+- the hidden path is therefore theoretically recoverable, but only with enough rare evidence
+
+Purpose:
+
+- test the transition between unrecoverable and recoverable support, and whether fixed pessimism becomes too conservative once rare evidence starts accumulating
+
 ## Methods
 
 - `greedy`: plug-in value iteration with no uncertainty penalty
@@ -76,6 +101,8 @@ Commands used:
 ```bash
 python3 scripts/run_tabular_experiment.py --config configs/bandit_study.json
 python3 scripts/run_tabular_experiment.py --config configs/branching_study.json
+python3 scripts/run_tabular_experiment.py --config configs/intrinsic_study.json
+python3 scripts/run_tabular_experiment.py --config configs/near_intrinsic_study.json
 ```
 
 Common settings:
@@ -83,12 +110,14 @@ Common settings:
 - dataset sizes: `10, 20, 50, 100, 200, 500`
 - seeds: `200`
 - pessimism coefficient: `beta = 0.8`
-- support-masked threshold: `3` for the bandit, `2` for the branching MDP
+- support-masked threshold: `3` for the bandit, `2` for both branching tasks
 
 Each run also saves the resolved config:
 
 - [bandit resolved config](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/bandit_study/resolved_config.json)
 - [branching resolved config](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/branching_study/resolved_config.json)
+- [intrinsic resolved config](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/intrinsic_study/resolved_config.json)
+- [near-intrinsic resolved config](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/near_intrinsic_study/resolved_config.json)
 
 ### Bandit
 
@@ -165,6 +194,73 @@ Interpretation:
 - Pessimism does not just prune rare actions; it keeps the planner on the correct branch across multiple steps.
 - The support-masked baseline helps, but it is less consistent because a simple support threshold cannot express graded uncertainty across the horizon.
 
+### Intrinsic Uncertainty
+
+Artifacts:
+
+- [resolved_config.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/intrinsic_study/resolved_config.json)
+- [summary.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/intrinsic_study/summary.json)
+- [metrics.csv](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/intrinsic_study/metrics.csv)
+- [comparison.png](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/intrinsic_study/comparison.png)
+
+Figure:
+
+![Intrinsic fixed-beta comparison](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/intrinsic_study/comparison.png)
+
+Key findings:
+
+- The true optimal value in this task is `0.950`, but the best fully learnable safe branch is only `0.800`.
+- At `10` episodes, greedy reached `0.738`, pessimistic reached `0.786`, and support-masked reached `0.780`.
+- At `50` episodes, pessimistic had already stabilized at `0.800`, while greedy was still only `0.735`.
+- At `500` episodes, greedy improved to `0.781`, but pessimistic still plateaued at `0.800` rather than recovering the hidden optimum.
+
+Diagnostics:
+
+- Pessimistic reduced low-support mass from greedy’s `0.450` to `0.030` at `10` episodes, and to `0.000` by `50`.
+- Greedy’s chosen-action overestimation stayed positive throughout, from `0.201` at `10` to `0.027` at `500`.
+- Pessimistic showed negative chosen-action error throughout, from `-0.280` at `10` to `-0.050` at `500`, which is consistent with deliberate conservatism.
+- Agreement with the optimal policy stayed capped near `0.667`, because the optimal risky continuation is off-support and never becomes learnable from the logged data.
+
+Interpretation:
+
+- This is the cleanest limit-case in the current suite.
+- Pessimism still helps by steering the learner toward the best supported branch and avoiding extra mistakes on the weakly visited risky branch.
+- But it does not hallucinate the hidden optimal continuation. The method fails gracefully: it reaches the best supported value `0.800`, not the true optimum `0.950`.
+
+### Near-Missing Support
+
+Artifacts:
+
+- [resolved_config.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/near_intrinsic_study/resolved_config.json)
+- [summary.json](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/near_intrinsic_study/summary.json)
+- [metrics.csv](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/near_intrinsic_study/metrics.csv)
+- [comparison.png](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/near_intrinsic_study/comparison.png)
+
+Figure:
+
+![Near-intrinsic fixed-beta comparison](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/results/raw/near_intrinsic_study/comparison.png)
+
+Key findings:
+
+- The true optimum is still `0.950`, but the hidden optimal continuation now appears very rarely in the logged data.
+- At `10` episodes, greedy reached `0.746`, pessimistic reached `0.786`, and support-masked reached `0.780`.
+- At `50` episodes, greedy had already climbed to `0.791`, nearly matching the fixed pessimistic run at `0.798`.
+- By `100` episodes, greedy had overtaken fixed pessimism: `0.846` versus `0.798`.
+- By `500` episodes, greedy reached `0.911` and support-masked reached `0.908`, while fixed `beta = 0.8` stayed capped at `0.800`.
+
+Diagnostics:
+
+- Greedy carried a large amount of low-support mass for a long time: `0.510` at `10`, `0.470` at `50`, `0.390` at `200`.
+- Fixed pessimism drove low-support mass essentially to zero immediately, but that same caution blocked it from exploiting the rare optimal evidence later.
+- Agreement with the optimal policy climbed steadily for greedy, reaching `0.925` by `500`, while fixed pessimism remained near `0.667`.
+
+Interpretation:
+
+- This task shows the transition we were after.
+- When support is almost missing, pessimism is helpful early because it prevents weakly supported optimism.
+- Once rare evidence accumulates, however, a fixed pessimistic penalty becomes too conservative and prevents recovery of the hidden optimal branch.
+- In other words, the near-support task shows not only that support matters, but that the right amount of pessimism should itself depend on how much evidence has accumulated.
+
 ## Interpretation
 
 The first-phase results support the design choice to stay tabular before moving to richer function classes.
@@ -175,6 +271,8 @@ What worked:
 - The greedy plug-in baseline is most fragile when support is weakest.
 - Pessimism improves return precisely by reducing reliance on poorly supported actions and lowering chosen-action overestimation.
 - As dataset size grows, the difference between methods shrinks, which is the behavior we wanted to see.
+- In the intrinsic-uncertainty task, pessimism also shows the right failure mode: it protects the learner from unsupported optimism without pretending it can recover off-support optimal behavior.
+- In the near-missing-support task, fixed pessimism shows its limit: it is useful early, but it can become the wrong inductive bias once rare optimal evidence becomes statistically meaningful.
 
 What the extra baseline taught us:
 
@@ -198,6 +296,8 @@ Latest sweep takeaway:
 
 - the bandit prefers fairly strong pessimism across the tested range
 - the branching task prefers moderate pessimism under weak coverage and progressively smaller `beta` as coverage improves
+- the intrinsic task shows a structural ceiling: beta tuning changes how quickly we reach the safe supported value, but not the fact that the hidden optimum remains unrecoverable
+- the near-support task shows a regime change: moderate-to-strong pessimism helps at low data, but the best beta falls to `0.0` once the hidden optimal continuation becomes learnable
 - `beta = 0.8` remains a good default compromise for this repository, but it is not universally optimal
 
 ## Design Takeaways for Phase 2
@@ -210,11 +310,11 @@ The tabular results suggest the next extension should preserve three properties:
 
 Recommended next coding step:
 
-- add a `beta` sweep and identify the range where pessimism helps without becoming too conservative
+- try an adaptive or data-dependent pessimism schedule now that the fixed-grid beta sweep is in place
 
 Recommended next scientific step:
 
-- create one or two harder branching families where intrinsic uncertainty is genuinely unrecoverable, so we can show pessimism fails gracefully rather than simply looking strong everywhere
+- map out the recoverable-to-unrecoverable boundary more systematically by sweeping the hidden-support probability itself
 
 ## Limits
 
@@ -224,7 +324,7 @@ Recommended next scientific step:
 
 ## Next Steps
 
-- add parameter sweeps over the pessimism coefficient `beta`
 - compare against a fixed-penalty conservative baseline in addition to support masking
 - add per-step plots of estimated Q, true Q, and penalty size on chosen trajectories
+- sweep the hidden-support probability to build a phase diagram of when fixed pessimism helps, hurts, or becomes irrelevant
 - move to a linear-feature version only after the tabular picture is stable

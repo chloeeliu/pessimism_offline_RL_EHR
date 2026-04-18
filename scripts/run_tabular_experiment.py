@@ -28,7 +28,7 @@ from peorl.experiments import RunMetrics, run_single_seed
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--task", choices=["bandit", "branching"], default="branching")
+    parser.add_argument("--task", choices=["bandit", "branching", "intrinsic", "near_intrinsic"], default="branching")
     parser.add_argument("--dataset-sizes", default="20,50,100,200,500")
     parser.add_argument("--seeds", type=int, default=50, help="Number of random seeds.")
     parser.add_argument("--beta", type=float, default=1.0)
