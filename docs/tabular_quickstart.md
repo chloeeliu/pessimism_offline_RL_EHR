@@ -95,6 +95,7 @@ Current study docs:
 
 - [phase1_tabular_report.md](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/docs/phase1_tabular_report.md)
 - [beta_sweep_report.md](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/docs/beta_sweep_report.md)
+- [four_task_detailed_guide.md](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/docs/four_task_detailed_guide.md)
 
 ## Suggested Next Coding Steps
 

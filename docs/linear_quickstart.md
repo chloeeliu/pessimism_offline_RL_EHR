@@ -20,6 +20,7 @@ This project now has a working Phase 2 linear-feature experiment suite alongside
 - [phase2_linear_design.md](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/docs/phase2_linear_design.md)
 - [phase2_linear_report.md](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/docs/phase2_linear_report.md)
 - [linear_beta_sweep_report.md](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/docs/linear_beta_sweep_report.md)
+- [four_task_detailed_guide.md](/Users/chloe/Desktop/uw_madison/26Spring/RL/pessimism_offline_RL/docs/four_task_detailed_guide.md)
 
 ## Useful Commands
 
