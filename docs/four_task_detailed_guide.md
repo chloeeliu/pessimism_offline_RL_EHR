@@ -16,6 +16,7 @@ If you only want the results story:
 
 - tabular: read `docs/phase1_tabular_report.md`, then `docs/beta_sweep_report.md`
 - linear: read `docs/phase2_linear_report.md`, then `docs/linear_beta_sweep_report.md`
+- cross-suite synthesis: read `docs/cross_suite_analysis_report.md`
 
 If you also want to understand engineering details, do one more pass through:
 
